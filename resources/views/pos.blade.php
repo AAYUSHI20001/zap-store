@@ -1,169 +1,356 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>POS</title>
-</head>
-<body class="bg-gray-100 p-4">
-    <div class="grid grid-cols-4 gap-4">
-        <div class="col-span-1 bg-white p-4 rounded-lg shadow-md">
-        <button class="flex items-center space-x-2 p-2 border rounded-lg w-full text-left">
-    <i class="fas fa-user text-gray-500"></i>
-    <span class="text-gray-500">Choose User</span>
-</button>
+@extends('layouts.app')
 
-            <div class="mt-4 border-t pt-4">
-                <h3 class="text-gray-600 text-lg">PRODUCT</h3>
-                <p class="text-gray-400 text-center mt-4">No Data Available</p>
-            </div>
-            <div class="mt-4">
-                <h4 class="text-gray-600">Discount</h4>
-                <div class="flex items-center space-x-2 mt-2">
-                    <input type="radio" name="discount" class="text-blue-500" checked> <span>Fixed</span>
-                    <input type="radio" name="discount" class="text-blue-500"> <span>Percentage</span>
+@section('title', 'POS - Zap Store')
+@section('header', 'Point of Sale')
+
+@section('content')
+<div class="flex h-[calc(100vh-100px)]">
+    <!-- Left Side - Products -->
+    <div class="flex-1 bg-white p-4 mr-4 rounded-lg shadow-lg overflow-hidden flex flex-col">
+        <!-- Search and Filters -->
+        <div class="flex gap-4 mb-4">
+            <!-- Barcode Scanner -->
+            <div class="flex-1">
+                <div class="relative">
+                    <input type="text" 
+                           id="barcode" 
+                           class="w-full p-3 pl-10 border rounded-lg" 
+                           placeholder="Scan/Enter Product Code"
+                           autofocus>
+                    <i class="fa fa-barcode absolute left-3 top-3 text-gray-400"></i>
                 </div>
-                <input type="text" placeholder="Discount ₹" class="w-full border rounded-lg p-2 mt-2">
             </div>
-            <div class="mt-4 text-gray-700">
-    <p>Total QTY: <span class="float-right">0</span></p>
-    <p>Sub Total: <span class="float-right">₹ 0.00</span></p>
-    <h3 class="font-bold text-lg mt-2">Total: ₹ 0.00</h3>
-    <button class="w-full bg-green-500 text-white py-2 mt-4 rounded-lg hover:bg-green-600 transition">
-        <i class="fas fa-credit-card mr-2"></i> Pay Now
-    </button>
-</div>
-
-        </div>
-        
-      
-        <div class="col-span-3 bg-white p-4 rounded-lg shadow-md">
-    <div class="flex items-center space-x-2 mb-4">
-        <div class="relative w-full">
-            <input type="text" placeholder="Search Product by Code Name" class="w-full border rounded-lg p-2 pl-10">
-            <i class="fas fa-search absolute left-3 top-3 text-gray-500"></i>
-        </div>
-        <button class="bg-pink-500 text-white p-2 rounded-lg">
-            <i class="fas fa-list"></i>
-        </button>
-        <button class="bg-green-500 text-white p-2 rounded-lg">
-            <i class="fas fa-shopping-cart"></i>
-        </button>
-    </div>
-            <div class="flex flex-wrap gap-2 mb-4">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">All Categories</button>
-                <button class="bg-gray-200 px-4 py-2 rounded-lg">Electronics</button>
-                <button class="bg-gray-200 px-4 py-2 rounded-lg">Clothing</button>
-           
+            
+            <!-- Product Search -->
+            <div class="flex-1">
+                <div class="relative">
+                    <input type="text" 
+                           id="search-products" 
+                           class="w-full p-3 pl-10 border rounded-lg" 
+                           placeholder="Search Products...">
+                    <i class="fa fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
             </div>
-            <div class="grid grid-cols-4 gap-6">
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="nike.jpg" alt="Nike Shoes" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 1000.00</span>
-        <p class="text-gray-600 text-sm">Nike</p>
-        <p class="text-gray-400 text-xs">123346</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="tv.jpg" alt="T.V" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 20000.00</span>
-        <p class="text-gray-600 text-sm">T.V</p>
-        <p class="text-gray-400 text-xs">898670</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="smartphone.jpg" alt="Smartphone" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 25000.00</span>
-        <p class="text-gray-600 text-sm">Smartphone</p>
-        <p class="text-gray-400 text-xs">654980</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="adidas.jpg" alt="Adidas Shoes" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 1800.00</span>
-        <p class="text-gray-600 text-sm">Adidas</p>
-        <p class="text-gray-400 text-xs">615687</p>
-    </div>
-</div>
 
-<div class="grid grid-cols-4 gap-6 mt-6">
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="puma-shoes.jpg" alt="Puma Shoes" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 3000.00</span>
-        <p class="text-gray-600 text-sm">Puma Shoes</p>
-        <p class="text-gray-400 text-xs">984321</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="watch.jpg" alt="Watch" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 750.00</span>
-        <p class="text-gray-600 text-sm">Watch</p>
-        <p class="text-gray-400 text-xs">741852</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="headphones.jpg" alt="Headphones" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 4200.00</span>
-        <p class="text-gray-600 text-sm">Headphones</p>
-        <p class="text-gray-400 text-xs">369852</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="laptop.jpg" alt="Laptop" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 35000.00</span>
-        <p class="text-gray-600 text-sm">Laptop</p>
-        <p class="text-gray-400 text-xs">159357</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="bag.jpg" alt="Bag" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 35000.00</span>
-        <p class="text-gray-600 text-sm">Bag</p>
-        <p class="text-gray-400 text-xs">456789</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="refrigerator.jpg" alt="Refrigerator" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 78000.00</span>
-        <p class="text-gray-600 text-sm">Refrigerator</p>
-        <p class="text-gray-400 text-xs">159787</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="shirt.jpg" alt="Shirt" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 25000.00</span>
-        <p class="text-gray-600 text-sm">Shirt</p>
-        <p class="text-gray-400 text-xs">199357</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="oven.jpg" alt="Oven" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 55000.00</span>
-        <p class="text-gray-600 text-sm">Oven</p>
-        <p class="text-gray-400 text-xs">159357</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="product1.jpg" alt="Product1" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 2000.00</span>
-        <p class="text-gray-600 text-sm">Product1</p>
-        <p class="text-gray-400 text-xs">145357</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="product2.jpg" alt="Product2" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 5000.00</span>
-        <p class="text-gray-600 text-sm">Product2</p>
-        <p class="text-gray-400 text-xs">190357</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="product3.jpg" alt="Product3" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 900.00</span>
-        <p class="text-gray-600 text-sm">Product3</p>
-        <p class="text-gray-400 text-xs">298397</p>
-    </div>
-    <div class="border p-3 rounded-lg text-center shadow-md bg-white">
-        <img src="product4.jpg" alt="Product4" class="w-20 h-20 mx-auto mb-2">
-        <span class="bg-blue-500 text-white px-2 py-1 text-sm rounded-full">₹ 4500.00</span>
-        <p class="text-gray-600 text-sm">Product4</p>
-        <p class="text-gray-400 text-xs">232397</p>
-    </div>
-</div>
+            <!-- Category Filter -->
+            <select id="category-filter" class="p-3 border rounded-lg w-48">
+                <option value="">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="food">Food & Beverages</option>
+            </select>
+        </div>
 
-
+        <!-- Products Grid -->
+        <div class="flex-1 overflow-y-auto">
+            <div class="grid grid-cols-6 gap-4" id="products-grid">
+                @foreach($products as $product)
+                <div class="product-card border rounded-lg p-3 cursor-pointer hover:border-blue-500 transition-colors"
+                     data-category="{{ $product->category }}"
+                     onclick="addToCart({{ json_encode($product) }})">
+                    <img src="{{ $product->image ? asset('storage/'.$product->image) : 'https://placehold.co/600x400/png' }}" 
+                         alt="{{ $product->name }}"
+                         class="w-full h-24 object-cover rounded-lg mb-2">
+                    <h4 class="font-semibold text-gray-800 text-sm truncate">{{ $product->name }}</h4>
+                    <p class="text-xs text-gray-600">Stock: {{ $product->stock }}</p>
+                    <p class="text-sm font-bold text-green-600 mt-1">₹{{ number_format($product->selling_price, 2) }}</p>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>
+
+    <!-- Right Side - Cart -->
+    <div class="w-1/3 bg-white rounded-lg shadow-lg flex flex-col">
+        <!-- Cart Header -->
+        <div class="p-4 border-b">
+            <h2 class="text-xl font-bold text-gray-800">Current Sale</h2>
+        </div>
+
+        <!-- Cart Items -->
+        <div class="flex-1 p-4 overflow-y-auto" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="border-t p-4">
+            <div class="space-y-3">
+                <div class="flex justify-between text-lg">
+                    <span>Subtotal:</span>
+                    <span id="subtotal" class="font-semibold">₹0.00</span>
+                </div>
+                <div class="flex justify-between text-lg">
+                    <span>Tax (18%):</span>
+                    <span id="tax" class="font-semibold">₹0.00</span>
+                </div>
+                <div class="flex justify-between text-xl font-bold border-t pt-2">
+                    <span>Total:</span>
+                    <span id="total">₹0.00</span>
+                </div>
+            </div>
+
+            <!-- Payment Section -->
+            <div class="space-y-3 mt-4">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-700 mb-1">Payment Method</label>
+                        <select id="payment-method" class="w-full p-2 border rounded-lg">
+                            <option value="cash">Cash</option>
+                            <option value="card">Card</option>
+                            <option value="upi">UPI</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-1">Amount Paid</label>
+                        <input type="number" 
+                               id="amount-paid" 
+                               class="w-full p-2 border rounded-lg" 
+                               value="0"
+                               step="0.01">
+                    </div>
+                </div>
+                <div class="flex justify-between text-lg text-green-600 font-bold">
+                    <span>Change:</span>
+                    <span id="change">₹0.00</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-2 gap-3 mt-4">
+                <button onclick="clearCart()" 
+                        class="p-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                    <i class="fa fa-trash mr-2"></i>Clear
+                </button>
+                <button onclick="processSale()" 
+                        class="p-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                    <i class="fa fa-check-circle mr-2"></i>Complete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@push('scripts')
+<script>
+let cart = [];
+const TAX_RATE = 0.18; // 18% tax
+
+// Add to cart function
+function addToCart(product) {
+    const existingItem = cart.find(item => item.product_id === product.id);
     
-</body>
-</html>
+    if (existingItem) {
+        if (existingItem.quantity >= product.stock) {
+            alert('Maximum stock reached!');
+            return;
+        }
+        existingItem.quantity++;
+    } else {
+        cart.push({
+            product_id: product.id,
+            name: product.name,
+            price: product.selling_price,
+            quantity: 1,
+            stock: product.stock
+        });
+    }
+    
+    updateCartDisplay();
+    playAddToCartSound();
+}
+
+// Update quantity
+function updateQuantity(index, change) {
+    const item = cart[index];
+    const newQuantity = item.quantity + change;
+    
+    if (newQuantity > 0 && newQuantity <= item.stock) {
+        item.quantity = newQuantity;
+        updateCartDisplay();
+    }
+}
+
+// Remove from cart
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartDisplay();
+}
+
+// Clear cart
+function clearCart() {
+    if (confirm('Are you sure you want to clear the cart?')) {
+        cart = [];
+        updateCartDisplay();
+    }
+}
+
+// Update cart display
+function updateCartDisplay() {
+    const cartDiv = document.getElementById('cart-items');
+    cartDiv.innerHTML = '';
+    
+    cart.forEach((item, index) => {
+        cartDiv.innerHTML += `
+            <div class="flex justify-between items-center mb-4 p-2 border-b">
+                <div class="flex-1">
+                    <h4 class="font-semibold">${item.name}</h4>
+                    <p class="text-sm text-gray-600">₹${item.price} × ${item.quantity}</p>
+                    <p class="text-sm font-bold text-green-600">₹${(item.price * item.quantity).toFixed(2)}</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="updateQuantity(${index}, -1)" 
+                            class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">-</button>
+                    <span class="w-8 text-center">${item.quantity}</span>
+                    <button onclick="updateQuantity(${index}, 1)" 
+                            class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
+                    <button onclick="removeFromCart(${index})" 
+                            class="ml-2 text-red-500 hover:text-red-600">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    
+    updateTotals();
+}
+
+// Update totals
+function updateTotals() {
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const tax = subtotal * TAX_RATE;
+    const total = subtotal + tax;
+    
+    document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+    document.getElementById('tax').textContent = `₹${tax.toFixed(2)}`;
+    document.getElementById('total').textContent = `₹${total.toFixed(2)}`;
+    
+    // Update change amount
+    updateChange();
+}
+
+// Update change amount
+function updateChange() {
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) * (1 + TAX_RATE);
+    const amountPaid = parseFloat(document.getElementById('amount-paid').value) || 0;
+    const change = amountPaid - total;
+    document.getElementById('change').textContent = `₹${Math.max(0, change).toFixed(2)}`;
+}
+
+// Process sale
+function processSale() {
+    if (cart.length === 0) {
+        alert('Cart is empty!');
+        return;
+    }
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) * (1 + TAX_RATE);
+    const amountPaid = parseFloat(document.getElementById('amount-paid').value) || 0;
+    
+    if (amountPaid < total) {
+        alert('Insufficient payment amount!');
+        return;
+    }
+    
+    const saleData = {
+        items: cart.map(item => ({
+            product_id: item.product_id,
+            quantity: item.quantity
+        })),
+        total_amount: total,
+        paid_amount: amountPaid,
+        payment_method: document.getElementById('payment-method').value
+    };
+    
+    // Send sale data to server
+    fetch('/sales', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify(saleData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Sale completed successfully!');
+            // Open invoice in new window
+            window.open(`/sales/${data.sale.id}/invoice`, '_blank');
+            // Clear cart
+            cart = [];
+            updateCartDisplay();
+            document.getElementById('amount-paid').value = '0';
+        } else {
+            alert(data.message || 'Error processing sale');
+        }
+    })
+    .catch(error => {
+        alert('Error processing sale');
+        console.error('Error:', error);
+    });
+}
+
+// Barcode/product code input handler
+document.getElementById('barcode').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        const code = this.value;
+        fetch(`/get-product?code=${code}`)
+            .then(response => response.json())
+            .then(product => {
+                if (product.error) {
+                    alert(product.error);
+                } else {
+                    addToCart(product);
+                }
+                this.value = '';
+            })
+            .catch(error => {
+                alert('Error finding product');
+                console.error('Error:', error);
+            });
+    }
+});
+
+// Product search handler
+document.getElementById('search-products').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const category = document.getElementById('category-filter').value;
+    filterProducts(searchTerm, category);
+});
+
+// Category filter handler
+document.getElementById('category-filter').addEventListener('change', function(e) {
+    const category = e.target.value;
+    const searchTerm = document.getElementById('search-products').value.toLowerCase();
+    filterProducts(searchTerm, category);
+});
+
+// Filter products
+function filterProducts(searchTerm, category) {
+    const products = document.querySelectorAll('.product-card');
+    products.forEach(product => {
+        const productName = product.querySelector('h4').textContent.toLowerCase();
+        const productCategory = product.dataset.category;
+        const matchesSearch = productName.includes(searchTerm);
+        const matchesCategory = !category || productCategory === category;
+        
+        product.style.display = matchesSearch && matchesCategory ? 'block' : 'none';
+    });
+}
+
+// Amount paid input handler
+document.getElementById('amount-paid').addEventListener('input', updateChange);
+
+// Play sound when adding to cart
+function playAddToCartSound() {
+    // You can add a sound effect here if desired
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartDisplay();
+});
+</script>
+@endpush
+@endsection

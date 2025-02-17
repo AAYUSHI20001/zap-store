@@ -79,7 +79,7 @@
     <header class="p-6 text-white gradient-header shadow-md flex justify-between items-center">
         <h1 class="text-2xl font-bold">Zap Store - Products</h1>
         <button class="btn-primary text-white px-4 py-2 rounded-lg shadow hover:scale-105 transition">
-            <i class="fas fa-arrow-left"></i>
+            <i class="fa fa-arrow-left"></i>
          Back to Products
     </button>
         </a>
@@ -88,31 +88,31 @@
         <nav class="w-64 sidebar text-white min-h-screen p-4">
             <ul class="space-y-4">
                 <li class="font-semibold text-lg flex items-center">
-                    <i class="fas fa-tachometer-alt mr-3"></i>
+                    <i class="fa fa-tachometer-alt mr-3"></i>
                     <a href="#">Dashboard</a>
                 </li>
                 <li class="font-semibold text-lg flex items-center">
-                    <i class="fas fa-box-open mr-3"></i>
+                    <i class="fa fa-box-open mr-3"></i>
                     <a href="#">Products</a>
                 </li>
                 <li class="font-semibold text-lg flex items-center">
-                <i class="fas fa-shopping-cart mr-3"></i>
+                <i class="fa fa-shopping-cart mr-3"></i>
                     <a href="#" class="hover:text-blue-400">Purchases</a>
                 </li>
                 <li class="font-semibold text-lg flex items-center">
-                <i class="fas fa-money-bill-wave mr-3"></i>
+                <i class="fa fa-money-bill-wave mr-3"></i>
                     <a href="#" class="hover:text-blue-400">Sales</a>
                 </li>
                 <li class="font-semibold text-lg flex items-center">
-                    <i class="fas fa-chart-line mr-3"></i>
+                    <i class="fa fa-chart-line mr-3"></i>
                     <a href="#" class="hover:text-blue-400">Reports</a>
                 </li>
                 <li class="font-semibold text-lg flex items-center">
-                    <i class="fas fa-cogs mr-3"></i>
+                    <i class="fa fa-cogs mr-3"></i>
                     <a href="#">Settings</a>
                 </li>
                 <li class="font-semibold text-lg flex items-center">
-                    <i class="fas fa-sign-out-alt mr-3"></i>
+                    <i class="fa fa-sign-out-alt mr-3"></i>
                     <a href="#">Log Out</a>
                 </li>
             </ul>
